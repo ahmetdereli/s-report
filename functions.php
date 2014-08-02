@@ -273,3 +273,37 @@ function s_report_custom_header() {
 add_action( 'wp_head', 's_report_custom_header' );
 // --------------------------------------------------------
 // Theme Customizations
+
+// --------------------------------------------------------
+// Parallax
+function parallax_scripts() {
+ 
+    wp_enqueue_script( 'parallax', get_template_directory_uri() . '/js/jquery.parallax-1.1.3.js', array(), '1.1.3', true );
+ 
+    wp_enqueue_script( 'nicescroll', get_template_directory_uri() . '/js/jquery.nicescroll.min.js', array(), '3.5.4', true );
+ 
+}
+ 
+add_action( 'wp_enqueue_scripts', 'parallax_scripts' );
+
+function set_parallax() {
+        ?>
+        <script type="text/javascript">
+        (function($) {
+        $(document).ready(function() {
+            $('.SiteHeader').parallax('50%', 0.3);
+        });
+        })(jQuery);
+        $(document).ready(
+        function() { 
+            $('html').niceScroll();
+        }
+        );        
+        </script>
+
+<?php
+}
+
+add_action('wp_footer', 'set_parallax');
+// --------------------------------------------------------
+// Parallax
